@@ -8,7 +8,7 @@ class App extends React.Component {
     super()
 
     this.state = {
-      count: 4,
+      count: 10,
 
     }
   }
