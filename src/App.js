@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import teams from './teams.json'
+import TeamInfo from './components/TeamInfo'
+import Counter from './components/Counter'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      count: 4,
+
+    }
+  }
+
+  // buttons
+  handleClickDown = () => {
+    if(this.state.count > 1){
+      this.setState({
+        count : this.state.count - 1
+      })
+    }
+  }
+
+  handleClickUp = () => {
+    if(this.state.count < teams.length){
+      this.setState({
+        count : this.state.count + 1
+      })
+    }
+  }
+  // buttons end
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <header className='d-flex flex-row'>
+          <h1>Teams Info</h1>
+          <Counter increment={this.handleClickUp} substract={this.handleClickDown} count={this.state.count} />
+        </header>
+        <div className="d-flex flex-row flex-wrap justify-content-center">
+          {teams.filter((team, i) => i<this.state.count).map(team => {
+            return (
+              <TeamInfo
+                picture={team.crestUrl}
+                shortName = {team.shortName}
+                venue={team.venue}
+                address = {team.address}
+                email={team.email}
+                tel={team.phone}
+                founded={team.founded}
+              />
+              )
+            })}
+        </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
