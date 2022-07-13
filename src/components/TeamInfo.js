@@ -9,9 +9,9 @@ class TeamInfo extends React.Component {
           <h4 className="align-self-center p-4">{this.props.shortName}</h4>
         </article>
         <article className='p-4 d-flex flex-column'>
-          <p>
+          <h5>
             {this.props.venue}
-          </p>
+          </h5>
           <p>
             {this.props.address}
           </p>
@@ -22,7 +22,7 @@ class TeamInfo extends React.Component {
             {this.props.tel}
           </p>
           <p>
-            {this.props.founded}
+            Est.{this.props.founded}
           </p>
         </article>
     </div>

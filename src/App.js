@@ -29,14 +29,20 @@ class App extends React.Component {
       })
     }
   }
+
+  resetValue = () => {
+    this.setState({
+      count : 10
+    })
+  }
   // buttons end
 
   render() {
     return (
       <div className="container-fluid">
-        <header className='d-flex flex-row'>
+        <header className='d-flex flex-row justify-content-between'>
           <h1>Teams Info</h1>
-          <Counter increment={this.handleClickUp} substract={this.handleClickDown} count={this.state.count} />
+          <Counter increment={this.handleClickUp} substract={this.handleClickDown} count={this.state.count} reset={this.resetValue} />
         </header>
         <div className="d-flex flex-row flex-wrap justify-content-center">
           {teams.filter((team, i) => i<this.state.count).map(team => {
